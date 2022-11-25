@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:speak_mobile/flashcard_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,23 +26,13 @@ class _MyAppState extends State<MyApp> {
             // Flash Card
             Container(
               margin: const EdgeInsets.symmetric(vertical: 30),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 360,
-                height: 300,
+                height: 270,
                 child: FlipCard(
                   speed: 550,
-                  front: Card(
-                    elevation: 4,
-                    margin: const EdgeInsets.symmetric(horizontal: 5),
-                    color: Colors.white,
-                    child: Center(child: Text('Front')),
-                  ),
-                  back: Card(
-                    elevation: 4,
-                    margin: const EdgeInsets.symmetric(horizontal: 5),
-                    color: Colors.white,
-                    child: Center(child: Text('Back')),
-                  ),
+                  front: FlashCardView(text: "Front 2"),
+                  back: FlashCardView(text: "Back 2"),
                 ),
               ),
             ),
