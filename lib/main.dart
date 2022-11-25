@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:speak_mobile/flashcard.dart';
 import 'package:speak_mobile/flashcard_view.dart';
 
 void main() {
@@ -14,6 +15,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<Flashcard> _flashcards = [
+    Flashcard(question: "question 1", answer: "answer 1"),
+    Flashcard(question: "question 2", answer: "answer 2"),
+    Flashcard(question: "question 3", answer: "answer 3"),
+    Flashcard(question: "question 4", answer: "answer 4"),
+  ];
+
+  int _index = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,8 +42,8 @@ class _MyAppState extends State<MyApp> {
                 height: 270,
                 child: FlipCard(
                   speed: 550,
-                  front: FlashCardView(text: "Front 2"),
-                  back: FlashCardView(text: "Back 2"),
+                  front: FlashCardView(text: _flashcards[_index].question),
+                  back: FlashCardView(text: _flashcards[_index].answer),
                 ),
               ),
             ),
@@ -45,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: _decreaseIndex,
                     icon: const Icon(Icons.chevron_left),
                     label: const Text('Prev'),
                   ),
@@ -54,7 +64,7 @@ class _MyAppState extends State<MyApp> {
                     style: TextStyle(color: Colors.black54, fontSize: 13),
                   ),
                   OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: _increaseIndex,
                     label: const Text('Next'),
                     icon: const Icon(Icons.chevron_right),
                   ),
@@ -65,5 +75,17 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  void _increaseIndex() {
+    setState(() {
+      _index = (_index++ < _flashcards.length) ? _index++ : 0;
+    });
+  }
+
+  void _decreaseIndex() {
+    setState(() {
+      _index = (_index-- >= 0) ? _index-- : _flashcards.length--;
+    });
   }
 }
