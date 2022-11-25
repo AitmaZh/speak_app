@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:speak_mobile/flashcard.dart';
-import 'package:speak_mobile/flashcard_view.dart';
+import 'package:speak_mobile/ui/flashcard_view.dart';
 
 void main() {
   runApp(const MyApp());
