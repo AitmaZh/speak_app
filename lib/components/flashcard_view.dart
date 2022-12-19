@@ -14,7 +14,7 @@ class FlashCardView extends StatelessWidget {
       color: StyleImports.colors.container.background,
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: StyleImports.colors.text.heading,
+          color: StyleImports.colors.border.flashcard,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
