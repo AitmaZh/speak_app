@@ -3,8 +3,14 @@ import 'package:flip_card/flip_card.dart';
 import '/models/flashcard.dart';
 import '/components/flashcard_view.dart';
 import '/theme/style_imports.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   runApp(const MyApp());
 }
 
@@ -68,6 +74,11 @@ class _ActionListenerFlashcardsState extends State<ActionListenerFlashcards> {
     });
   }
 
+  int _cardNumber() {
+    int newIndex = _index;
+    return ++newIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,9 +86,9 @@ class _ActionListenerFlashcardsState extends State<ActionListenerFlashcards> {
       home: Scaffold(
         backgroundColor: StyleImports.colors.scaffold.background,
         appBar: AppBar(
-          title: const Text(
-            '[Cards index]',
-            style: TextStyle(
+          title: Text(
+            "${_cardNumber()} / ${_flashcards.length}",
+            style: const TextStyle(
               color: Colors.black,
             ),
           ),
